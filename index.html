@@ -23,13 +23,17 @@
     /* Navigointipalkin tyyli */
     nav {
       width: 100%;
-      background-color: #333; /* Musta tausta */
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: #333;
       padding: 10px 0;
       text-align: center;
+      z-index: 1000;
     }
 
     nav a {
-      color: white; /* Valkoinen teksti */
+      color: white;
       margin: 0 15px;
       text-decoration: none;
       font-size: 1.2rem;
@@ -39,12 +43,13 @@
       text-decoration: underline;
     }
 
+    /* Sivun sisältö */
     .content {
       text-align: center;
-      background-color: rgba(169, 169, 169, 0.7); /* Harmaa tausta tekstin taakse */
+      background-color: rgba(169, 169, 169, 0.7);
       padding: 20px;
-      border-radius: 10px; 
-      margin-top: 50px; /* Väli navigointipalkista */
+      border-radius: 10px;
+      margin-top: 80px;
     }
 
     h1 {
@@ -61,9 +66,9 @@
 <body>
   <!-- Navigointipalkki -->
   <nav>
-    <a href="https://example.com" target="_blank">Etusivu</a>
-    <a href="https://example2.com" target="_blank">Ansioluettelo</a>
-    <a href="https://example3.com" target="_blank">Opetustyö</a>
+    <a href="etusivu.html" target="_blank">Etusivu</a>
+    <a href="ansioluettelo.html" target="_blank">Ansioluettelo</a>
+    <a href="opetustyo.html" target="_blank">Opetustyö</a>
   </nav>
 
   <!-- Sivun sisältö -->
@@ -73,4 +78,5 @@
   </div>
 </body>
 </html>
+
 
