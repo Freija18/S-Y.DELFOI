@@ -43,6 +43,24 @@
       text-decoration: underline;
     }
 
+    /* Sosiaalisen median ikonit */
+    .social-icons {
+      margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-icons a img {
+      width: 40px; /* Kuvan leveys */
+      height: 40px; /* Kuvan korkeus */
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .social-icons a img:hover {
+      transform: scale(1.1); /* Suurentaa kuvaa hieman hoveroidessa */
+    }
+
     /* Sivun sisältö */
     .content {
       text-align: center;
@@ -70,6 +88,16 @@
     <a href="ansioluettelo.html">Ansioluettelo</a>
     <a href="opetustyo.html">Opetustyö</a>
   </nav>
+
+  <!-- Sosiaalisen median kuvakkeet -->
+  <div class="social-icons">
+    <a href="https://www.facebook.com/henrik.holmstrom.56" target="_blank">
+      <img src="facebook.png" alt="Facebook">
+    </a>
+    <a href="www.linkedin.com/in/henrik-holmström-4732bb29b" target="_blank">
+      <img src="linkedin.png" alt="LinkedIn">
+    </a>
+  </div>
 
   <!-- Sivun sisältö -->
   <div class="content">
