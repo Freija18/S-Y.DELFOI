@@ -66,14 +66,14 @@
 
     /* Sivun sisältö */
     .content {
-      position: relative; /* Asetetaan suhteellinen sijainti */
+      position: relative;
       text-align: center;
       padding: 40px;
       margin-top: 80px;
-      max-width: 500px; /* Tekstialueen maksimileveys */
+      max-width: 500px;
     }
 
-    /* PNG-tausta ja harmaa täyttö */
+    /* PNG-tausta */
     .content::before {
       content: '';
       position: absolute;
@@ -86,8 +86,8 @@
       background-size: contain;
       background-repeat: no-repeat;
       background-position: center;
-      background-color: rgba(169, 169, 169, 0.7); /* Harmaa tausta osittain läpinäkyvänä */
-      z-index: -1; /* Taustan pitää olla tekstin takana */
+      filter: grayscale(100%) brightness(50%) opacity(70%); /* Harmaa sävy, tummennus ja läpinäkyvyys */
+      z-index: -1;
     }
 
     h1 {
@@ -129,6 +129,7 @@
   </div>
 </body>
 </html>
+
 
 
 
