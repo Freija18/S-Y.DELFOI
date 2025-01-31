@@ -24,6 +24,8 @@
       left: 0;
       width: 100vw;
       height: 100vh;
+      min-width: 100%;
+      min-height: 100%;
       object-fit: cover;
       z-index: -1;
     }
@@ -80,7 +82,7 @@
       text-align: center;
       padding: 20px;
       margin-top: 15vh;
-      max-width: 25%;
+      max-width: 80%;
     }
 
     /* Harmaa kuva tekstin taustalla */
@@ -118,6 +120,11 @@
             align-items: center;
         }
 
+        .background-video {
+            width: 100vw;
+            height: 100vh;
+        }
+
         .content {
             width: 90%;
             padding: 15px;
@@ -127,6 +134,14 @@
         nav a {
             font-size: 0.9rem;
             margin: 5px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+        }
+
+        p {
+            font-size: 0.9rem;
         }
 
         .social-icons {
@@ -175,6 +190,7 @@
   </div>
 </body>
 </html>
+
 
 
 
