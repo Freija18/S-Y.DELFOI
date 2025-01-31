@@ -80,18 +80,19 @@
       text-align: center;
       padding: 20px;
       margin-top: 15vh;
-      max-width: 25%;
+      max-width: 600px; /* Maksimileveys sisällölle */
+      width: 90%; /* Tehdään responsiiviseksi */
     }
 
     /* Harmaa kuva tekstin taustalla */
     .content::before {
       content: '';
       position: absolute;
-      top: -160%;
+      top: 50%;
       left: 50%;
-      transform: translateX(-50%);
-      width: 400%;
-      height: 400%;
+      transform: translate(-50%, -50%);
+      width: 300%;
+      height: 300%;
       background-image: url(harmaaoikea3.png);
       background-size: contain;
       background-repeat: no-repeat;
@@ -101,13 +102,14 @@
     }
 
     h1 {
-      font-size: 1.8rem;
+      font-size: 2rem;
       color: black;
     }
 
     p {
       font-size: 1rem;
       color: black;
+      line-height: 1.5;
     }
 
     /* Mobiilinäkymän parannukset */
@@ -118,25 +120,20 @@
             overflow: auto; /* Mahdollistaa vierityksen mobiilissa */
         }
 
-        .background-video {
-            object-fit: cover;
-        }
-
         .content {
-            width: 90%;
+            max-width: 90%; /* Lisää leveys mobiililaitteilla */
             padding: 15px;
             margin-top: 10vh;
         }
 
         /* Harmaa kuva tekstin taustalla pienemmillä näytöillä */
         .content::before {
-            top: -200%;
-            width: 200%; /* Kuvan skaalauksen vähennys */
+            width: 200%; /* Skaalataan kuvan leveys pienemmäksi */
             height: 200%;
         }
 
         h1 {
-            font-size: 1.4rem; /* Pienempi fonttikoko mobiilissa */
+            font-size: 1.5rem; /* Pienempi fonttikoko mobiilissa */
         }
 
         p {
@@ -194,6 +191,7 @@
   </div>
 </body>
 </html>
+
 
 
 
