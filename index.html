@@ -2,7 +2,7 @@
 <html lang="fi">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
   <title>Oma Sivuni</title>
   <style>
     body {
@@ -81,7 +81,7 @@
       padding: 15px;
       margin-top: 15vh;
       max-width: 500px; /* Maksimileveys sisällölle */
-      width: 60%; /* Tehdään responsiiviseksi */
+      width: 90%; /* Responsiivinen leveys */
     }
 
     /* Harmaa kuva tekstin taustalla */
@@ -91,8 +91,8 @@
       top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
-      width: 500%;
-      height: 500%;
+      width: 300%;
+      height: 300%;
       background-image: url(harmaaoikea3.png);
       background-size: contain;
       background-repeat: no-repeat;
@@ -115,9 +115,9 @@
     /* Mobiilinäkymän parannukset */
     @media (max-width: 768px) {
         body {
-            height: auto;
+            height: 100%; /* Varmistaa, että korkeus täyttää koko ruudun */
             align-items: center;
-            overflow: auto; /* Mahdollistaa vierityksen mobiilissa */
+            overflow: auto; /* Vieritys sallittu mobiilissa */
         }
 
         .content {
@@ -128,8 +128,8 @@
 
         /* Harmaa kuva tekstin taustalla pienemmillä näytöillä */
         .content::before {
-            width: 200%; /* Skaalataan kuvan leveys pienemmäksi */
-            height: 200%;
+            width: 150%; /* Skaalataan kuvan leveys pienemmäksi */
+            height: 150%;
         }
 
         h1 {
@@ -191,6 +191,7 @@
   </div>
 </body>
 </html>
+
 
 
 
