@@ -17,7 +17,6 @@
       overflow: hidden;
     }
 
-    /* Videotausta */
     .background-video {
       position: fixed;
       top: 0;
@@ -28,7 +27,6 @@
       z-index: -1;
     }
 
-    /* Navigointipalkin tyyli */
     nav {
       width: 100%;
       position: fixed;
@@ -53,7 +51,6 @@
       text-decoration: underline;
     }
 
-    /* Sosiaalisen median ikonit alareunassa */
     .social-icons {
       position: fixed;
       bottom: 10px;
@@ -74,21 +71,18 @@
       transform: scale(1.1);
     }
 
-    /* Sivun sisältö */
     .content {
       position: relative;
       text-align: center;
       padding: 10px;
-      margin-top: 15vh;
-      max-width: 400px; /* Maksimileveys sisällölle */
-      width: 78%; /* Responsiivinen leveys */
+      max-width: 400px;
+      width: 78%;
     }
 
-    /* Harmaa kuva tekstin taustalla */
     .content::before {
       content: '';
       position: absolute;
-      top: 40%;
+      top: 50%;
       left: 50%;
       transform: translate(-50%, -50%);
       width: 580%;
@@ -112,31 +106,30 @@
       line-height: 1.5;
     }
 
-    /* Mobiilinäkymän parannukset */
     @media (max-width: 768px) {
         body {
-            height: 100%; /* Varmistaa, että korkeus täyttää koko ruudun */
+            height: 100vh;
+            display: flex;
+            justify-content: center;
             align-items: center;
         }
 
         .content {
-            max-width: 70%; /* Lisää leveys mobiililaitteilla */
+            max-width: 70%;
             padding: 10px;
-            margin-top: 30vh;
         }
 
-        /* Harmaa kuva tekstin taustalla pienemmillä näytöillä */
         .content::before {
-            width: 430%; /* Skaalataan kuvan leveys pienemmäksi */
+            width: 430%;
             height: 430%;
         }
 
         h1 {
-            font-size: 1.5rem; /* Pienempi fonttikoko mobiilissa */
+            font-size: 1.5rem;
         }
 
         p {
-            font-size: 0.9rem; /* Pienempi kappaleteksti mobiilissa */
+            font-size: 0.9rem;
         }
 
         nav a {
@@ -157,20 +150,17 @@
   </style>
 </head>
 <body>
-  <!-- Taustavideo -->
   <video class="background-video" autoplay muted loop>
     <source src="aallotvideo.mp4" type="video/mp4">
     Selaimesi ei tue videota.
   </video>
 
-  <!-- Navigointipalkki -->
   <nav>
     <a href="etusivu.html">Etusivu</a>
     <a href="ansioluettelo.html">S/Y Delfoi</a>
     <a href="opetustyo.html">Matkamme</a>
   </nav>
 
-  <!-- Sosiaalisen median kuvakkeet -->
   <div class="social-icons">
     <a href="https://www.facebook.com/henrik.holmstrom.56/" target="_blank">
       <img src="facebook-2815970_1280.jpg" alt="Facebook">
@@ -180,7 +170,6 @@
     </a>
   </div>
 
-  <!-- Sivun sisältö -->
   <div class="content">
     <h1>S/Y Delfoi!</h1>
     <p>Nämä sivut toimivat purjeveneemme kotisivuna ja matkapurjehduksemme kotisatamana.
@@ -188,18 +177,3 @@
   </div>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
