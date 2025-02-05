@@ -11,9 +11,10 @@
       padding: 0;
       font-family: 'Lucida Console', monospace;
       color: black;
-      height: 100vh;
-
-      /* Taustakuva */
+      min-height: 100vh; /* Varmistaa, että sisältö täyttää koko näytön korkeuden */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between; /* Jakaa sisällön tasaisesti */
       background-image: url(beach-1846449_1280.jpg); /* Vaihda tähän oikea kuvan nimi */
       background-size: cover;
       background-position: center;
@@ -49,8 +50,9 @@
       background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 10px;
-      margin: 100px auto 0; /* Väli navigaatiosta */
+      margin: 80px auto; /* Joustava marginaali navigaatiosta */
       width: 50%;
+      max-width: 600px; /* Maksimileveys isoilla näytöillä */
     }
 
     h1 {
@@ -59,23 +61,19 @@
 
     p {
       font-size: 1rem;
+      line-height: 1.6;
     }
 
     /* Responsiivisuus mobiililaitteilla */
     @media (max-width: 768px) {
-      body {
-        height: auto; /* Salli vieritys mobiililaitteilla */
-      }
-
       nav a {
-        font-size: 1rem; /* Pienennä navigointipalkin fonttikokoa */
+        font-size: 1rem;
         margin: 0 10px;
       }
 
       .content {
         width: 90%; /* Tee sisällöstä leveämpi pienillä näytöillä */
-        margin: 80px auto 0; /* Hieman vähemmän marginaalia navigaation alta */
-        padding: 15px; /* Pienempi täyte mobiilissa */
+        padding: 15px; /* Pienennä sisäistä täytettä */
       }
 
       h1 {
@@ -83,24 +81,23 @@
       }
 
       p {
-        font-size: 0.9rem; /* Pienennä kappaletekstin kokoa mobiilissa */
-        line-height: 1.4; /* Paranna luettavuutta mobiilissa */
+        font-size: 0.9rem;
       }
     }
 
     /* Parannuksia erittäin pienille näytöille */
     @media (max-width: 480px) {
       nav a {
-        font-size: 0.9rem; /* Vielä pienempi fonttikoko */
+        font-size: 0.9rem;
         margin: 0 5px;
       }
 
       .content {
-        padding: 10px; /* Vähennä täytettä erittäin pienillä näytöillä */
+        padding: 10px;
       }
 
       h1 {
-        font-size: 1.2rem;
+        font-size: 1.3rem;
       }
 
       p {
@@ -131,4 +128,5 @@
 
 </body>
 </html>
+
 
