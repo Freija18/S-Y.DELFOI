@@ -9,15 +9,15 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Lucida Console', monospace;  /* Fontti vaihdettu Lucida Consoleksi */
+      font-family: 'Lucida Console', monospace;
       color: black;
-      height: 100vh; /* Koko näytön korkeus */
+      height: 100vh;
 
       /* Taustakuva */
       background-image: url(beach-1846449_1280.jpg); /* Vaihda tähän oikea kuvan nimi */
-      background-size: cover; /* Täyttää koko näytön */
-      background-position: center; /* Keskittää kuvan */
-      background-repeat: no-repeat; /* Estää kuvan toiston */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     /* Navigointipalkki */
@@ -46,11 +46,11 @@
     /* Sivun sisältö */
     .content {
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.8); /* Valkoinen läpikuultava tausta */
+      background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 10px;
       margin: 100px auto 0; /* Väli navigaatiosta */
-      width: 50%; /* Tekstialueen leveys */
+      width: 50%;
     }
 
     h1 {
@@ -59,6 +59,53 @@
 
     p {
       font-size: 1rem;
+    }
+
+    /* Responsiivisuus mobiililaitteilla */
+    @media (max-width: 768px) {
+      body {
+        height: auto; /* Salli vieritys mobiililaitteilla */
+      }
+
+      nav a {
+        font-size: 1rem; /* Pienennä navigointipalkin fonttikokoa */
+        margin: 0 10px;
+      }
+
+      .content {
+        width: 90%; /* Tee sisällöstä leveämpi pienillä näytöillä */
+        margin: 80px auto 0; /* Hieman vähemmän marginaalia navigaation alta */
+        padding: 15px; /* Pienempi täyte mobiilissa */
+      }
+
+      h1 {
+        font-size: 1.5rem; /* Pienennä otsikoiden kokoa mobiilissa */
+      }
+
+      p {
+        font-size: 0.9rem; /* Pienennä kappaletekstin kokoa mobiilissa */
+        line-height: 1.4; /* Paranna luettavuutta mobiilissa */
+      }
+    }
+
+    /* Parannuksia erittäin pienille näytöille */
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 0.9rem; /* Vielä pienempi fonttikoko */
+        margin: 0 5px;
+      }
+
+      .content {
+        padding: 10px; /* Vähennä täytettä erittäin pienillä näytöillä */
+      }
+
+      h1 {
+        font-size: 1.2rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
@@ -84,3 +131,4 @@
 
 </body>
 </html>
+
