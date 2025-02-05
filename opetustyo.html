@@ -9,15 +9,16 @@
     body {
       margin: 0;
       padding: 0;
-      font-family: 'Lucida Console', monospace;  /* Fontti vaihdettu Lucida Consoleksi */
+      font-family: 'Lucida Console', monospace;
       color: black;
-      height: 100vh; /* Koko näytön korkeus */
-
-      /* Taustakuva */
+      min-height: 100vh; /* Varmistaa, että koko näkymä täyttyy */
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
       background-image: url(beach-1846449_1280.jpg); /* Vaihda tähän oikea kuvan nimi */
-      background-size: cover; /* Täyttää koko näytön */
-      background-position: center; /* Keskittää kuvan */
-      background-repeat: no-repeat; /* Estää kuvan toiston */
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
     }
 
     /* Navigointipalkki */
@@ -46,11 +47,12 @@
     /* Sivun sisältö */
     .content {
       text-align: center;
-      background-color: rgba(255, 255, 255, 0.8); /* Valkoinen läpikuultava tausta */
+      background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 10px;
-      margin: 100px auto 0; /* Väli navigaatiosta */
-      width: 50%; /* Tekstialueen leveys */
+      margin: 80px auto;
+      width: 50%;
+      max-width: 600px;
     }
 
     h1 {
@@ -59,6 +61,48 @@
 
     p {
       font-size: 1rem;
+      line-height: 1.6;
+    }
+
+    /* Responsiivisuus mobiililaitteille */
+    @media (max-width: 768px) {
+      nav a {
+        font-size: 1rem;
+        margin: 0 10px;
+      }
+
+      .content {
+        width: 90%;
+        padding: 15px;
+      }
+
+      h1 {
+        font-size: 1.5rem;
+      }
+
+      p {
+        font-size: 0.9rem;
+      }
+    }
+
+    /* Parannuksia erittäin pienille näytöille */
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 0.9rem;
+        margin: 0 5px;
+      }
+
+      .content {
+        padding: 10px;
+      }
+
+      h1 {
+        font-size: 1.3rem;
+      }
+
+      p {
+        font-size: 0.8rem;
+      }
     }
   </style>
 </head>
@@ -75,12 +119,14 @@
   <div class="content">
     <h1>Tulevat reittisuunnitelmat</h1>
     <p>Tulevana kesänä Delfoi suuntaa kohti Göteborgia sekä Ruotsin länsirannikkoa.</p>
-        <h1>Matkakertomukset</h1>
+    
+    <h1>Matkakertomukset</h1>
     <p>Kesällä 2024 purjehdimme kotisatamastamme Ruotsiin ja Gotlantiin. Matkamme kaukaisin käännöspaikka
     oli Öölannin pohjoiskärjessä sijaitseva Byxelkrokin satama.</p>
   </div>
 
 </body>
 </html>
+
 
 
