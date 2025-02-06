@@ -83,6 +83,25 @@
       transform: scale(1.05);
     }
 
+    /* Fancybox asetukset */
+    .fancybox__caption {
+      background: rgba(0, 0, 0, 0.6);
+      color: white;
+      font-size: 1.2rem;
+      padding: 10px;
+      text-align: center;
+    }
+
+    /* Nuolinapit */
+    .fancybox__nav {
+      color: white !important;
+    }
+    
+    .fancybox__button--arrow_right::after,
+    .fancybox__button--arrow_left::after {
+      font-size: 40px;
+    }
+
     /* Responsiivisuus mobiililaitteille */
     @media (max-width: 768px) {
       .content { width: 90%; padding: 15px; }
@@ -155,9 +174,17 @@
       caption: function (instance, item) {
         return item.$trigger.dataset.caption || "";
       },
+      Carousel: {
+        infinite: true,
+      },
+      Navigation: {
+        nextEl: ".fancybox__button--arrow_right",
+        prevEl: ".fancybox__button--arrow_left",
+      }
     });
   </script>
 
 </body>
 </html>
+
 
