@@ -15,11 +15,11 @@
       padding: 0;
       font-family: 'Lucida Console', monospace;
       color: black;
-      min-height: 100vh; /* Varmistaa, että koko näkymä täyttyy */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      background-image: url(beach-1846449_1280.jpg); /* Vaihda tähän oikea kuvan nimi */
+      background-image: url(beach-1846449_1280.jpg);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
@@ -68,8 +68,8 @@
       line-height: 1.6;
     }
 
-    /* Kuvagallerian tyylit */
-    .gallery {
+    /* Kuvagalleria */
+    .matkakuvagalleria {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
@@ -77,14 +77,14 @@
       margin-top: 20px;
     }
 
-    .gallery a {
+    .matkakuvagalleria a {
       width: 150px;
       height: 100px;
       overflow: hidden;
       display: block;
     }
 
-    .gallery img {
+    .matkakuvagalleria img {
       width: 100%;
       height: 100%;
       object-fit: cover;
@@ -93,59 +93,23 @@
       transition: transform 0.3s;
     }
 
-    .gallery img:hover {
+    .matkakuvagalleria img:hover {
       transform: scale(1.1);
     }
 
     /* Responsiivisuus mobiililaitteille */
     @media (max-width: 768px) {
-      nav a {
-        font-size: 1rem;
-        margin: 0 10px;
-      }
-
-      .content {
-        width: 90%;
-        padding: 15px;
-      }
-
-      h1 {
-        font-size: 1.5rem;
-      }
-
-      p {
-        font-size: 0.9rem;
-      }
-
-      .gallery a {
-        width: 120px;
-        height: 80px;
-      }
+      .content { width: 90%; padding: 15px; }
+      h1 { font-size: 1.5rem; }
+      p { font-size: 0.9rem; }
+      .matkakuvagalleria a { width: 120px; height: 80px; }
     }
 
-    /* Parannuksia erittäin pienille näytöille */
     @media (max-width: 480px) {
-      nav a {
-        font-size: 0.9rem;
-        margin: 0 5px;
-      }
-
-      .content {
-        padding: 10px;
-      }
-
-      h1 {
-        font-size: 1.3rem;
-      }
-
-      p {
-        font-size: 0.8rem;
-      }
-
-      .gallery a {
-        width: 100px;
-        height: 70px;
-      }
+      .content { padding: 10px; }
+      h1 { font-size: 1.3rem; }
+      p { font-size: 0.8rem; }
+      .matkakuvagalleria a { width: 100px; height: 70px; }
     }
   </style>
 </head>
@@ -164,51 +128,49 @@
     <p>Tulevana kesänä Delfoi suuntaa kohti Göteborgia sekä Ruotsin länsirannikkoa.</p>
     
     <h1>Matkakertomukset</h1>
-    <p>Kesällä 2024 purjehdimme kotisatamastamme Ruotsiin ja Gotlantiin. Matkamme kaukaisin käännöspaikka
-    oli Öölannin pohjoiskärjessä sijaitseva Byxelkrokin satama.</p>
+    <p>Kesällä 2024 purjehdimme kotisatamastamme Ruotsiin ja Gotlantiin. Matkamme kaukaisin käännöspaikka oli Öölannin pohjoiskärjessä sijaitseva Byxelkrokin satama.</p>
 
     <!-- Kesälomapurjehdus 2024 -->
     <h1>Kesälomapurjehdus 2024</h1>
-    <div class="gallery">
-        <a href="kuvalahto.jpg" data-lightbox="gallery" data-title="Lähtö Laurinlahdesta">
-            <img src="kuvalahto.jpg" alt="Lähtö Laurinlahdesta">
+    <div class="matkakuvagalleria">
+        <a href="kuvat/kuvalahto.jpg" data-lightbox="matkakuvat" data-title="Lähtö Laurinlahdesta">
+            <img src="thumbs/kuvalahto.jpg" alt="Lähtö Laurinlahdesta" loading="lazy">
         </a>
-        <a href="kuvalippuylos.jpg" data-lightbox="gallery" data-title="Ruotsissa">
-            <img src="kuvalippuylos.jpg" alt="Ruotsissa">
+        <a href="kuvat/kuvalippuylos.jpg" data-lightbox="matkakuvat" data-title="Ruotsissa">
+            <img src="thumbs/kuvalippuylos.jpg" alt="Ruotsissa" loading="lazy">
         </a>
-        <a href="kuvavisby.jpg" data-lightbox="gallery" data-title="Kaunis Visbyn vanhakaupunki">
-            <img src="kuvavisby.jpg" alt="Kaunis Visbyn vanhakaupunki">
+        <a href="kuvat/kuvavisby.jpg" data-lightbox="matkakuvat" data-title="Kaunis Visbyn vanhakaupunki">
+            <img src="thumbs/kuvavisby.jpg" alt="Kaunis Visbyn vanhakaupunki" loading="lazy">
         </a>
-        <a href="kuvabyxel.jpg" data-lightbox="gallery" data-title="Byxelkrok Öölannissa">
-            <img src="kuvabyxel.jpg" alt="Byxelkrok Öölannissa">
+        <a href="kuvat/kuvabyxel.jpg" data-lightbox="matkakuvat" data-title="Byxelkrok Öölannissa">
+            <img src="thumbs/kuvabyxel.jpg" alt="Byxelkrok Öölannissa" loading="lazy">
         </a>
-              <a href="kuvalippualas.jpg" data-lightbox="gallery" data-title="Takaisin Suomessa">
-            <img src="kuvalippualas.jpg" alt="Takaisin Suomessa">
+        <a href="kuvat/kuvalippualas.jpg" data-lightbox="matkakuvat" data-title="Takaisin Suomessa">
+            <img src="thumbs/kuvalippualas.jpg" alt="Takaisin Suomessa" loading="lazy">
         </a>
-                    <a href="kuvaauringonlasku.jpg" data-lightbox="gallery" data-title="Auringonlaskupurjehdus">
-            <img src="kuvaauringonlasku.jpg" alt="Auringonlaskupurjehdus">
+        <a href="kuvat/kuvaauringonlasku.jpg" data-lightbox="matkakuvat" data-title="Auringonlaskupurjehdus">
+            <img src="thumbs/kuvaauringonlasku.jpg" alt="Auringonlaskupurjehdus" loading="lazy">
         </a>
-                    <a href="kuvaoro.jpg" data-lightbox="gallery" data-title="Örössä fillareilla">
-            <img src="kuvaoro.jpg" alt="Örössä fillareilla">
+        <a href="kuvat/kuvaoro.jpg" data-lightbox="matkakuvat" data-title="Örössä fillareilla">
+            <img src="thumbs/kuvaoro.jpg" alt="Örössä fillareilla" loading="lazy">
         </a>
-                    <a href="kuvakotona.jpg" data-lightbox="gallery" data-title="Skoolaus hienolle reissulle">
-            <img src="kuvakotona.jpg" alt="Skoolaus hienolle reissulle">
+        <a href="kuvat/kuvakotona.jpg" data-lightbox="matkakuvat" data-title="Skoolaus hienolle reissulle">
+            <img src="thumbs/kuvakotona.jpg" alt="Skoolaus hienolle reissulle" loading="lazy">
         </a>
     </div>
-
   </div>
 
   <!-- Lightbox JS -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
-<!-- Lightbox asetukset -->
-<script>
-    lightbox.option({
-        'resizeDuration': 200,
-        'wrapAround': true
-    });
-</script>
-
+  <!-- Lightbox asetukset -->
+  <script>
+      lightbox.option({
+          'resizeDuration': 200,
+          'wrapAround': true
+      });
+  </script>
 
 </body>
 </html>
+
