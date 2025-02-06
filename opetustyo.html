@@ -83,7 +83,7 @@
       transform: scale(1.05);
     }
 
-    /* Fancybox asetukset */
+    /* FancyBox kuvateksti */
     .fancybox__caption {
       background: rgba(0, 0, 0, 0.6);
       color: white;
@@ -94,12 +94,37 @@
 
     /* Nuolinapit */
     .fancybox__nav {
-      color: white !important;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 50px;
+      height: 50px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      z-index: 9999;
+      transition: background 0.3s;
     }
-    
-    .fancybox__button--arrow_right::after,
-    .fancybox__button--arrow_left::after {
-      font-size: 40px;
+
+    .fancybox__nav:hover {
+      background-color: white;
+    }
+
+    .fancybox__nav--left {
+      left: 20px;
+    }
+
+    .fancybox__nav--right {
+      right: 20px;
+    }
+
+    .fancybox__nav svg {
+      width: 24px;
+      height: 24px;
+      fill: black;
     }
 
     /* Responsiivisuus mobiililaitteille */
@@ -134,27 +159,13 @@
 
     <!-- Piilotetut kuvat FancyBox-galleriaa varten -->
     <div style="display: none;">
-        <a href="kuvalippuylos.jpg" data-fancybox="matkakuvat" data-caption="Ruotsissa">
-            <img src="kuvalippuylos.jpg" alt="Ruotsissa">
-        </a>
-        <a href="kuvavisby.jpg" data-fancybox="matkakuvat" data-caption="Kaunis Visbyn vanhakaupunki">
-            <img src="kuvavisby.jpg" alt="Kaunis Visbyn vanhakaupunki">
-        </a>
-        <a href="kuvabyxel.jpg" data-fancybox="matkakuvat" data-caption="Byxelkrok Öölannissa">
-            <img src="kuvabyxel.jpg" alt="Byxelkrok Öölannissa">
-        </a>
-        <a href="kuvalippualas.jpg" data-fancybox="matkakuvat" data-caption="Takaisin Suomessa">
-            <img src="kuvalippualas.jpg" alt="Takaisin Suomessa">
-        </a>
-        <a href="kuvaauringonlasku.jpg" data-fancybox="matkakuvat" data-caption="Auringonlaskupurjehdus">
-            <img src="kuvaauringonlasku.jpg" alt="Auringonlaskupurjehdus">
-        </a>
-        <a href="kuvaoro.jpg" data-fancybox="matkakuvat" data-caption="Örössä fillareilla">
-            <img src="kuvaoro.jpg" alt="Örössä fillareilla">
-        </a>
-        <a href="kuvakotona.jpg" data-fancybox="matkakuvat" data-caption="Skoolaus hienolle reissulle">
-            <img src="kuvakotona.jpg" alt="Skoolaus hienolle reissulle">
-        </a>
+        <a href="kuvalippuylos.jpg" data-fancybox="matkakuvat" data-caption="Ruotsissa"></a>
+        <a href="kuvavisby.jpg" data-fancybox="matkakuvat" data-caption="Kaunis Visbyn vanhakaupunki"></a>
+        <a href="kuvabyxel.jpg" data-fancybox="matkakuvat" data-caption="Byxelkrok Öölannissa"></a>
+        <a href="kuvalippualas.jpg" data-fancybox="matkakuvat" data-caption="Takaisin Suomessa"></a>
+        <a href="kuvaauringonlasku.jpg" data-fancybox="matkakuvat" data-caption="Auringonlaskupurjehdus"></a>
+        <a href="kuvaoro.jpg" data-fancybox="matkakuvat" data-caption="Örössä fillareilla"></a>
+        <a href="kuvakotona.jpg" data-fancybox="matkakuvat" data-caption="Skoolaus hienolle reissulle"></a>
     </div>
 
   </div>
@@ -165,26 +176,17 @@
   <!-- FancyBox asetukset -->
   <script>
     Fancybox.bind("[data-fancybox]", {
-      Toolbar: {
-        display: ["close"],
-      },
-      Thumbs: {
-        autoStart: true,
+      Carousel: {
+        infinite: true,
       },
       caption: function (instance, item) {
         return item.$trigger.dataset.caption || "";
       },
-      Carousel: {
-        infinite: true,
-      },
-      Navigation: {
-        nextEl: ".fancybox__button--arrow_right",
-        prevEl: ".fancybox__button--arrow_left",
-      }
     });
   </script>
 
 </body>
 </html>
+
 
 
