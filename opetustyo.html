@@ -71,30 +71,19 @@
     /* Kuvagalleria */
     .matkakuvagalleria {
       display: flex;
-      flex-wrap: wrap;
       justify-content: center;
-      gap: 10px;
       margin-top: 20px;
     }
 
-    .matkakuvagalleria a {
-      width: 150px;
-      height: 100px;
-      overflow: hidden;
-      display: block;
-    }
-
     .matkakuvagalleria img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
+      width: 300px;
       border-radius: 5px;
       cursor: pointer;
       transition: transform 0.3s;
     }
 
     .matkakuvagalleria img:hover {
-      transform: scale(1.1);
+      transform: scale(1.05);
     }
 
     /* Responsiivisuus mobiililaitteille */
@@ -102,14 +91,6 @@
       .content { width: 90%; padding: 15px; }
       h1 { font-size: 1.5rem; }
       p { font-size: 0.9rem; }
-      .matkakuvagalleria a { width: 120px; height: 80px; }
-    }
-
-    @media (max-width: 480px) {
-      .content { padding: 10px; }
-      h1 { font-size: 1.3rem; }
-      p { font-size: 0.8rem; }
-      .matkakuvagalleria a { width: 100px; height: 70px; }
     }
   </style>
 </head>
@@ -132,32 +113,22 @@
 
     <!-- Kesälomapurjehdus 2024 -->
     <h1>Kesälomapurjehdus 2024</h1>
+    
+    <!-- Näkyvä pikkukuva -->
     <div class="matkakuvagalleria">
-        <a href="kuvalahto.jpg" data-lightbox="matkakuvat" data-title="Lähtö Laurinlahdesta">
-            <img src="kuvalahto.jpg" alt="Lähtö Laurinlahdesta" loading="lazy">
-        </a>
-        <a href="kuvalippuylos.jpg" data-lightbox="matkakuvat" data-title="Ruotsissa">
-            <img src="kuvalippuylos.jpg" alt="Ruotsissa" loading="lazy">
-        </a>
-        <a href="kuvat/kuvavisby.jpg" data-lightbox="matkakuvat" data-title="Kaunis Visbyn vanhakaupunki">
-            <img src="thumbs/kuvavisby.jpg" alt="Kaunis Visbyn vanhakaupunki" loading="lazy">
-        </a>
-        <a href="kuvat/kuvabyxel.jpg" data-lightbox="matkakuvat" data-title="Byxelkrok Öölannissa">
-            <img src="thumbs/kuvabyxel.jpg" alt="Byxelkrok Öölannissa" loading="lazy">
-        </a>
-        <a href="kuvat/kuvalippualas.jpg" data-lightbox="matkakuvat" data-title="Takaisin Suomessa">
-            <img src="thumbs/kuvalippualas.jpg" alt="Takaisin Suomessa" loading="lazy">
-        </a>
-        <a href="kuvat/kuvaauringonlasku.jpg" data-lightbox="matkakuvat" data-title="Auringonlaskupurjehdus">
-            <img src="thumbs/kuvaauringonlasku.jpg" alt="Auringonlaskupurjehdus" loading="lazy">
-        </a>
-        <a href="kuvat/kuvaoro.jpg" data-lightbox="matkakuvat" data-title="Örössä fillareilla">
-            <img src="thumbs/kuvaoro.jpg" alt="Örössä fillareilla" loading="lazy">
-        </a>
-        <a href="kuvat/kuvakotona.jpg" data-lightbox="matkakuvat" data-title="Skoolaus hienolle reissulle">
-            <img src="thumbs/kuvakotona.jpg" alt="Skoolaus hienolle reissulle" loading="lazy">
-        </a>
+      <a href="kuvalahto.jpg" data-lightbox="matkakuvat" data-title="Lähtö Laurinlahdesta">
+          <img src="kuvalahto.jpg" alt="Lähtö Laurinlahdesta" loading="lazy">
+      </a>
     </div>
+
+    <!-- Piilotetut kuvat (ne näkyvät vasta kun galleria avataan) -->
+    <a href="kuvalippuylos.jpg" data-lightbox="matkakuvat" data-title="Ruotsissa" style="display: none;"></a>
+    <a href="kuvavisby.jpg" data-lightbox="matkakuvat" data-title="Kaunis Visbyn vanhakaupunki" style="display: none;"></a>
+    <a href="kuvabyxel.jpg" data-lightbox="matkakuvat" data-title="Byxelkrok Öölannissa" style="display: none;"></a>
+    <a href="kuvalippualas.jpg" data-lightbox="matkakuvat" data-title="Takaisin Suomessa" style="display: none;"></a>
+    <a href="kuvaauringonlasku.jpg" data-lightbox="matkakuvat" data-title="Auringonlaskupurjehdus" style="display: none;"></a>
+    <a href="kuvaoro.jpg" data-lightbox="matkakuvat" data-title="Örössä fillareilla" style="display: none;"></a>
+    <a href="kuvakotona.jpg" data-lightbox="matkakuvat" data-title="Skoolaus hienolle reissulle" style="display: none;"></a>
   </div>
 
   <!-- Lightbox JS -->
@@ -173,4 +144,5 @@
 
 </body>
 </html>
+
 
