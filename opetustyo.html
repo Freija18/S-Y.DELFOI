@@ -86,6 +86,14 @@
       transform: scale(1.05);
     }
 
+    /* Piilotetut Lightbox-kuvalinkit */
+    .hidden-lightbox {
+      width: 0;
+      height: 0;
+      overflow: hidden;
+      position: absolute;
+    }
+
     /* Responsiivisuus mobiililaitteille */
     @media (max-width: 768px) {
       .content { width: 90%; padding: 15px; }
@@ -121,14 +129,16 @@
       </a>
     </div>
 
-    <!-- Piilotetut kuvat (ne näkyvät vasta kun galleria avataan) -->
-    <a href="kuvalippuylos.jpg" data-lightbox="matkakuvat" data-title="Ruotsissa" style="display: none;"></a>
-    <a href="kuvavisby.jpg" data-lightbox="matkakuvat" data-title="Kaunis Visbyn vanhakaupunki" style="display: none;"></a>
-    <a href="kuvabyxel.jpg" data-lightbox="matkakuvat" data-title="Byxelkrok Öölannissa" style="display: none;"></a>
-    <a href="kuvalippualas.jpg" data-lightbox="matkakuvat" data-title="Takaisin Suomessa" style="display: none;"></a>
-    <a href="kuvaauringonlasku.jpg" data-lightbox="matkakuvat" data-title="Auringonlaskupurjehdus" style="display: none;"></a>
-    <a href="kuvaoro.jpg" data-lightbox="matkakuvat" data-title="Örössä fillareilla" style="display: none;"></a>
-    <a href="kuvakotona.jpg" data-lightbox="matkakuvat" data-title="Skoolaus hienolle reissulle" style="display: none;"></a>
+    <!-- Piilotetut kuvat, mutta Lightbox tunnistaa ne -->
+    <div class="hidden-lightbox">
+      <a href="kuvalippuylos.jpg" data-lightbox="matkakuvat" data-title="Ruotsissa"></a>
+      <a href="kuvavisby.jpg" data-lightbox="matkakuvat" data-title="Kaunis Visbyn vanhakaupunki"></a>
+      <a href="kuvabyxel.jpg" data-lightbox="matkakuvat" data-title="Byxelkrok Öölannissa"></a>
+      <a href="kuvalippualas.jpg" data-lightbox="matkakuvat" data-title="Takaisin Suomessa"></a>
+      <a href="kuvaauringonlasku.jpg" data-lightbox="matkakuvat" data-title="Auringonlaskupurjehdus"></a>
+      <a href="kuvaoro.jpg" data-lightbox="matkakuvat" data-title="Örössä fillareilla"></a>
+      <a href="kuvakotona.jpg" data-lightbox="matkakuvat" data-title="Skoolaus hienolle reissulle"></a>
+    </div>
   </div>
 
   <!-- Lightbox JS -->
@@ -144,5 +154,6 @@
 
 </body>
 </html>
+
 
 
