@@ -4,6 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Opetustyö</title>
+
+  <!-- Lightbox CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+
   <style>
     /* Perusasetukset */
     body {
@@ -64,6 +68,35 @@
       line-height: 1.6;
     }
 
+    /* Kuvagallerian tyylit */
+    .gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    .gallery a {
+      width: 150px;
+      height: 100px;
+      overflow: hidden;
+      display: block;
+    }
+
+    .gallery img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: transform 0.3s;
+    }
+
+    .gallery img:hover {
+      transform: scale(1.1);
+    }
+
     /* Responsiivisuus mobiililaitteille */
     @media (max-width: 768px) {
       nav a {
@@ -82,6 +115,11 @@
 
       p {
         font-size: 0.9rem;
+      }
+
+      .gallery a {
+        width: 120px;
+        height: 80px;
       }
     }
 
@@ -103,6 +141,11 @@
       p {
         font-size: 0.8rem;
       }
+
+      .gallery a {
+        width: 100px;
+        height: 70px;
+      }
     }
   </style>
 </head>
@@ -123,10 +166,40 @@
     <h1>Matkakertomukset</h1>
     <p>Kesällä 2024 purjehdimme kotisatamastamme Ruotsiin ja Gotlantiin. Matkamme kaukaisin käännöspaikka
     oli Öölannin pohjoiskärjessä sijaitseva Byxelkrokin satama.</p>
+
+    <!-- Kesälomapurjehdus 2024 -->
+    <h1>Kesälomapurjehdus 2024</h1>
+    <div class="gallery">
+        <a href="kuvalahto.jpg" data-lightbox="gallery" data-title="Lähtö Laurinlahdesta">
+            <img src="kuvalahto.jpg" alt="Lähtö Laurinlahdesta">
+        </a>
+        <a href="kuvalippuylos.jpg" data-lightbox="gallery" data-title="Ruotsissa">
+            <img src="kuvalippuylos.jpg" alt="Ruotsissa">
+        </a>
+        <a href="kuvavisby.jpg" data-lightbox="gallery" data-title="Kaunis Visbyn vanhakaupunki">
+            <img src="kuvavisby.jpg" alt="Kaunis Visbyn vanhakaupunki">
+        </a>
+        <a href="kuvabyxel.jpg" data-lightbox="gallery" data-title="Byxelkrok Öölannissa">
+            <img src="kuvabyxel.jpg" alt="Byxelkrok Öölannissa">
+        </a>
+              <a href="kuvalippualas.jpg" data-lightbox="gallery" data-title="Takaisin Suomessa">
+            <img src="kuvalippualas.jpg" alt="Takaisin Suomessa">
+        </a>
+                    <a href="kuvaauringonlasku.jpg" data-lightbox="gallery" data-title="Auringonlaskupurjehdus">
+            <img src="kuvaauringonlasku.jpg" alt="Auringonlaskupurjehdus">
+        </a>
+                    <a href="kuvaoro.jpg" data-lightbox="gallery" data-title="Örössä fillareilla">
+            <img src="kuvaoro.jpg" alt="Örössä fillareilla">
+        </a>
+                    <a href="kuvakotona.jpg" data-lightbox="gallery" data-title="Skoolaus hienolle reissulle">
+            <img src="kuvakotona.jpg" alt="Skoolaus hienolle reissulle">
+        </a>
+    </div>
+
   </div>
+
+  <!-- Lightbox JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
 
 </body>
 </html>
-
-
-
