@@ -4,7 +4,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Opetustyö</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/4.0.27/fancybox.min.css">
 
   <style>
     /* Perusasetukset */
@@ -71,11 +70,13 @@
       position: relative;
       max-width: 400px;
       margin: 20px auto;
+      touch-action: pan-y;
     }
 
     .gallery-container img {
       width: 100%;
       border-radius: 10px;
+      user-select: none;
     }
 
     /* Kuvateksti */
@@ -141,7 +142,7 @@
     <p>Kesällä 2024 purjehdimme kotisatamastamme Ruotsiin ja Gotlantiin. Matkamme kaukaisin käännöspaikka oli Öölannin pohjoiskärjessä sijaitseva Byxelkrokin satama.</p>
 
     <!-- Kuvagalleria -->
-    <div class="gallery-container">
+    <div class="gallery-container" id="gallery">
       <button class="prev" onclick="changeImage(-1)">&#10094;</button>
       <img id="gallery-image" src="kuvalahto.jpg" alt="Lähtö Laurinlahdesta">
       <button class="next" onclick="changeImage(1)">&#10095;</button>
@@ -150,7 +151,7 @@
 
   </div>
 
-  <!-- JavaScript kuvien vaihtamiseen -->
+  <!-- JavaScript kuvien vaihtamiseen ja pyyhkäisytukeen -->
   <script>
     const images = [
       { src: "kuvalahto.jpg", caption: "Lähtö Laurinlahdesta" },
@@ -164,6 +165,7 @@
     ];
 
     let currentIndex = 0;
+    let startX = 0;
 
     function changeImage(direction) {
       currentIndex += direction;
@@ -176,10 +178,27 @@
       document.getElementById("gallery-image").src = images[currentIndex].src;
       document.getElementById("caption").textContent = images[currentIndex].caption;
     }
+
+    // Pyyhkäisyeleiden käsittely
+    document.getElementById("gallery").addEventListener("touchstart", function(event) {
+      startX = event.touches[0].clientX;
+    });
+
+    document.getElementById("gallery").addEventListener("touchend", function(event) {
+      let endX = event.changedTouches[0].clientX;
+      let difference = startX - endX;
+
+      if (difference > 50) {
+        changeImage(1); // Pyyhkäisy vasemmalle -> seuraava kuva
+      } else if (difference < -50) {
+        changeImage(-1); // Pyyhkäisy oikealle -> edellinen kuva
+      }
+    });
   </script>
 
 </body>
 </html>
+
 
 
 
