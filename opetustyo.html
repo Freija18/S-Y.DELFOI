@@ -45,6 +45,21 @@
       text-decoration: underline;
     }
 
+    /* Responsiivisuus mobiililaitteilla */
+    @media (max-width: 768px) {
+      nav a {
+        font-size: 1rem;
+        margin: 0 10px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      nav a {
+        font-size: 0.9rem;
+        margin: 0 5px;
+      }
+    }
+
     /* Sivun sisältö */
     .content {
       text-align: center;
@@ -148,7 +163,6 @@
       <button class="next" onclick="changeImage(1)">&#10095;</button>
       <p id="caption" class="caption">Lähtö Laurinlahdesta</p>
     </div>
-
   </div>
 
   <!-- JavaScript kuvien vaihtamiseen ja pyyhkäisytukeen -->
@@ -178,26 +192,10 @@
       document.getElementById("gallery-image").src = images[currentIndex].src;
       document.getElementById("caption").textContent = images[currentIndex].caption;
     }
-
-    // Pyyhkäisyeleiden käsittely
-    document.getElementById("gallery").addEventListener("touchstart", function(event) {
-      startX = event.touches[0].clientX;
-    });
-
-    document.getElementById("gallery").addEventListener("touchend", function(event) {
-      let endX = event.changedTouches[0].clientX;
-      let difference = startX - endX;
-
-      if (difference > 50) {
-        changeImage(1); // Pyyhkäisy vasemmalle -> seuraava kuva
-      } else if (difference < -50) {
-        changeImage(-1); // Pyyhkäisy oikealle -> edellinen kuva
-      }
-    });
   </script>
-
 </body>
 </html>
+
 
 
 
