@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Opetustyö</title>
 
-  <!-- FancyBox CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/4.0.27/fancybox.min.css">
-
   <style>
     /* Perusasetukset */
     body {
@@ -15,10 +12,7 @@
       padding: 0;
       font-family: 'Lucida Console', monospace;
       color: black;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
+      text-align: center;
       background-image: url(beach-1846449_1280.jpg);
       background-size: cover;
       background-position: center;
@@ -28,11 +22,11 @@
     /* Navigointipalkki */
     nav {
       width: 100%;
+      background-color: rgba(169, 169, 169, 0.9);
+      padding: 10px 0;
       position: fixed;
       top: 0;
       left: 0;
-      background-color: rgba(169, 169, 169, 0.9);
-      padding: 10px 0;
       text-align: center;
       z-index: 1000;
     }
@@ -48,39 +42,51 @@
       text-decoration: underline;
     }
 
-    /* Sivun sisältö */
-    .content {
-      text-align: center;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      margin: 80px auto;
-      width: 50%;
-      max-width: 600px;
+    /* Kuvakehys */
+    .gallery-container {
+      position: relative;
+      margin: 100px auto 20px;
+      max-width: 500px;
     }
 
-    h1 {
-      font-size: 2rem;
-    }
-
-    p {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
-    /* Esikatselukuva */
-    .preview-image {
-      display: block;
+    /* Kuvan koko ja kehys */
+    .gallery-image {
       width: 100%;
-      max-width: 400px;
-      margin: 20px auto;
       border-radius: 10px;
-      cursor: pointer;
-      transition: transform 0.3s;
     }
 
-    .preview-image:hover {
-      transform: scale(1.05);
+    /* Kuvateksti */
+    .caption {
+      font-size: 1.2rem;
+      margin-top: 10px;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    /* Nuolinapit */
+    .nav-button {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.7);
+      border: none;
+      padding: 10px 15px;
+      font-size: 24px;
+      cursor: pointer;
+      border-radius: 50%;
+    }
+
+    .nav-button:hover {
+      background-color: white;
+    }
+
+    .prev {
+      left: -50px;
+    }
+
+    .next {
+      right: -50px;
     }
   </style>
 </head>
@@ -93,54 +99,43 @@
     <a href="opetustyo.html">Matkamme</a>
   </nav>
 
-  <!-- Sivun sisältö -->
-  <div class="content">
-    <h1>Tulevat reittisuunnitelmat</h1>
-    <p>Tulevana kesänä Delfoi suuntaa kohti Göteborgia sekä Ruotsin länsirannikkoa.</p>
-    
-    <h1>Matkakertomukset</h1>
-    <p>Kesällä 2024 purjehdimme kotisatamastamme Ruotsiin ja Gotlantiin. Matkamme kaukaisin käännöspaikka oli Öölannin pohjoiskärjessä sijaitseva Byxelkrokin satama.</p>
-
-    <!-- Esikatselukuva (vain yksi näkyy) -->
-    <a href="kuvalahto.jpg" data-fancybox="matkakuvat" data-caption="Lähtö Laurinlahdesta">
-        <img src="kuvalahto.jpg" alt="Lähtö Laurinlahdesta" class="preview-image" loading="lazy">
-    </a>
-
-    <!-- Piilotetut kuvat FancyBox-galleriaa varten -->
-    <div style="display: none;">
-        <a href="kuvalippuylos.jpg" data-fancybox="matkakuvat" data-caption="Ruotsissa"></a>
-        <a href="kuvavisby.jpg" data-fancybox="matkakuvat" data-caption="Kaunis Visbyn vanhakaupunki"></a>
-        <a href="kuvabyxel.jpg" data-fancybox="matkakuvat" data-caption="Byxelkrok Öölannissa"></a>
-        <a href="kuvalippualas.jpg" data-fancybox="matkakuvat" data-caption="Takaisin Suomessa"></a>
-        <a href="kuvaauringonlasku.jpg" data-fancybox="matkakuvat" data-caption="Auringonlaskupurjehdus"></a>
-        <a href="kuvaoro.jpg" data-fancybox="matkakuvat" data-caption="Örössä fillareilla"></a>
-        <a href="kuvakotona.jpg" data-fancybox="matkakuvat" data-caption="Skoolaus hienolle reissulle"></a>
-    </div>
+  <!-- Kuvagalleria -->
+  <div class="gallery-container">
+    <button class="nav-button prev" onclick="changeImage(-1)">&#10094;</button>
+    <img id="galleryImage" src="kuvalahto.jpg" class="gallery-image" alt="Lähtö Laurinlahdesta">
+    <button class="nav-button next" onclick="changeImage(1)">&#10095;</button>
+    <div id="caption" class="caption">Lähtö Laurinlahdesta</div>
   </div>
 
-  <!-- FancyBox JS -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/4.0.27/fancybox.umd.min.js"></script>
-
-  <!-- FancyBox asetukset -->
   <script>
-    Fancybox.bind("[data-fancybox]", {
-      Carousel: {
-        infinite: true,
-      },
-      caption: function (instance, item) {
-        return item.$trigger.dataset.caption || "";
-      },
-      Toolbar: {
-        display: [
-          { id: "prev", position: "left" },
-          { id: "next", position: "right" },
-          "close",
-        ],
-      },
-    });
+    // Kuvadata-taulukko
+    const images = [
+      { src: "kuvalahto.jpg", caption: "Lähtö Laurinlahdesta" },
+      { src: "kuvalippuylos.jpg", caption: "Ruotsissa" },
+      { src: "kuvavisby.jpg", caption: "Kaunis Visbyn vanhakaupunki" },
+      { src: "kuvabyxel.jpg", caption: "Byxelkrok Öölannissa" },
+      { src: "kuvalippualas.jpg", caption: "Takaisin Suomessa" },
+      { src: "kuvaauringonlasku.jpg", caption: "Auringonlaskupurjehdus" },
+      { src: "kuvaoro.jpg", caption: "Örössä fillareilla" },
+      { src: "kuvakotona.jpg", caption: "Skoolaus hienolle reissulle" }
+    ];
+
+    let currentIndex = 0;
+
+    // Kuvan vaihtaminen
+    function changeImage(direction) {
+      currentIndex += direction;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      if (currentIndex >= images.length) currentIndex = 0;
+
+      document.getElementById("galleryImage").src = images[currentIndex].src;
+      document.getElementById("galleryImage").alt = images[currentIndex].caption;
+      document.getElementById("caption").textContent = images[currentIndex].caption;
+    }
   </script>
 
 </body>
 </html>
+
 
 
