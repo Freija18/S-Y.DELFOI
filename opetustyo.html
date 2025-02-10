@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matkamme</title>
 
+  <!-- Leaflet.js-kirjaston tyylit karttaa varten -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  
   <style>
     /* Perusasetukset */
     body {
@@ -22,64 +25,6 @@
       background-repeat: no-repeat;
     }
 
-    /* Navigointipalkki */
-    nav {
-      width: 100%;
-      position: fixed;
-      top: 0;
-      left: 0;
-      background-color: rgba(169, 169, 169, 0.9);
-      padding: 10px 0;
-      text-align: center;
-      z-index: 1000;
-    }
-
-    nav a {
-      color: white;
-      margin: 0 15px;
-      text-decoration: none;
-      font-size: 1rem;
-    }
-
-    nav a:hover {
-      text-decoration: underline;
-    }
-
-    /* Responsiivisuus mobiililaitteilla */
-    @media (max-width: 768px) {
-      nav a {
-        font-size: 1rem;
-        margin: 0 10px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      nav a {
-        font-size: 0.9rem;
-        margin: 0 5px;
-      }
-    }
-
-    /* Sivun sisältö */
-    .content {
-      text-align: center;
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
-      border-radius: 10px;
-      margin: 80px auto;
-      width: 50%;
-      max-width: 600px;
-    }
-
-    h1 {
-      font-size: 2rem;
-    }
-
-    p {
-      font-size: 1rem;
-      line-height: 1.6;
-    }
-
     /* Kuvagalleria */
     .gallery-container {
       position: relative;
@@ -94,14 +39,12 @@
       user-select: none;
     }
 
-    /* Kuvateksti */
     .caption {
       text-align: center;
       font-size: 1.2rem;
       margin-top: 10px;
     }
 
-    /* Nuolinapit */
     .prev, .next {
       position: absolute;
       top: 50%;
@@ -121,78 +64,61 @@
       background-color: white;
     }
 
-    .prev {
-      left: -40px;
-    }
+    .prev { left: -40px; }
+    .next { right: -40px; }
 
-    .next {
-      right: -40px;
+    /* Kartan tyyli */
+    #map {
+      width: 100%;
+      height: 400px;
+      margin-top: 20px;
+      border-radius: 10px;
     }
 
     /* Responsiivisuus */
     @media (max-width: 768px) {
-      .content { width: 90%; padding: 15px; }
-      h1 { font-size: 1.5rem; }
-      p { font-size: 0.9rem; }
       .prev { left: -30px; }
       .next { right: -30px; }
     }
   </style>
+
 </head>
 <body>
 
-  <!-- Navigointipalkki -->
-  <nav>
-    <a href="index.html">Etusivu</a>
-    <a href="ansioluettelo.html">S/Y Delfoi</a>
-    <a href="opetustyo.html">Matkamme</a>
-  </nav>
-
-  <!-- Sivun sisältö -->
-  <div class="content">
-    <h1>Tulevat reittisuunnitelmat</h1>
-    <p>Tulevana kesänä Delfoi suuntaa kohti Göteborgia sekä Ruotsin länsirannikkoa.</p>
-    
-    <h1>Matkakertomukset</h1>
-    <p>Kesällä 2024 purjehdimme kotisatamastamme Ruotsiin ja Gotlantiin. Matkamme kaukaisin käännöspaikka oli Öölannin pohjoiskärjessä sijaitseva Byxelkrokin satama.</p>
-
-    <!-- Kuvagalleria -->
-    <div class="gallery-container" id="gallery">
-      <button class="prev" onclick="changeImage(-1)">&#10094;</button>
-      <img id="gallery-image" src="kuvalahto.jpg" alt="Lähtö Laurinlahdesta">
-      <button class="next" onclick="changeImage(1)">&#10095;</button>
-      <p id="caption" class="caption">Lähtö Laurinlahdesta</p>
-    </div>
+  <!-- Kuvagalleria -->
+  <div class="gallery-container" id="gallery">
+    <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+    <img id="gallery-image" src="kuvalahto.jpg" alt="Lähtö Laurinlahdesta">
+    <button class="next" onclick="changeImage(1)">&#10095;</button>
+    <p id="caption" class="caption">Lähtö Laurinlahdesta</p>
   </div>
 
-  <!-- JavaScript kuvien vaihtamiseen ja pyyhkäisytukeen -->
+  <!-- Kartta -->
+  <div id="map"></div>
+
+  <!-- Leaflet.js-kirjaston skripti -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
   <script>
+    // Kuvadata
     const images = [
       { src: "kuvalahto.jpg", caption: "Lähtö Laurinlahdesta" },
       { src: "kuvalippuylos.jpg", caption: "Ruotsissa" },
       { src: "kuvavisby.jpg", caption: "Kaunis Visbyn vanhakaupunki" },
       { src: "kuvabyxel.jpg", caption: "Byxelkrok Öölannissa" },
-      { src: "kuvalippualas.jpg", caption: "Takaisin Suomessa" },
-      { src: "kuvaauringonlasku.jpg", caption: "Auringonlaskupurjehdus" },
-      { src: "kuvaoro.jpg", caption: "Örössä fillareilla" },
-      { src: "kuvakotona.jpg", caption: "Skoolaus hienolle reissulle" }
+      { src: "kuvalippualas.jpg", caption: "Takaisin Suomessa" }
     ];
 
     let currentIndex = 0;
     let startX = 0;
 
     function changeImage(direction) {
-      currentIndex += direction;
-      if (currentIndex < 0) {
-        currentIndex = images.length - 1;
-      } else if (currentIndex >= images.length) {
-        currentIndex = 0;
-      }
-
+      currentIndex = (currentIndex + direction + images.length) % images.length;
       document.getElementById("gallery-image").src = images[currentIndex].src;
       document.getElementById("caption").textContent = images[currentIndex].caption;
     }
-// Pyyhkäisyeleiden käsittely
+
+    // Pyyhkäisyeleiden käsittely mobiililaitteille
     document.getElementById("gallery").addEventListener("touchstart", function(event) {
       startX = event.touches[0].clientX;
     });
@@ -207,9 +133,30 @@
         changeImage(-1); // Pyyhkäisy oikealle -> edellinen kuva
       }
     });
+
+    // Leaflet.js-kartan luonti
+    var map = L.map('map').setView([59.3293, 18.0686], 5); // Koordinaatit: Tukholma, zoom-taso 5
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    // Merkitään muutama matkakohde kartalle
+    var locations = [
+      { coords: [60.1658, 24.9525], text: "Lähtö: Helsinki" },
+      { coords: [57.6348, 18.2990], text: "Visby, Gotlanti" },
+      { coords: [56.9680, 16.6596], text: "Byxelkrok, Öölanti" }
+    ];
+
+    locations.forEach(loc => {
+      L.marker(loc.coords).addTo(map).bindPopup(loc.text);
+    });
+
   </script>
+
 </body>
 </html>
+
 
 
 
