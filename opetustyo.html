@@ -207,34 +207,6 @@
         changeImage(-1); // Pyyhkäisy oikealle -> edellinen kuva
       }
     });
-        <!-- Kartta -->
-    <h2>Reittisuunnitelma</h2>
-    <div id="map"></div>
-  </div>
-
-  <!-- Leaflet-kirjaston JavaScript -->
-  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
-
-  <script>
-    // Luo kartta ja aseta keskipisteeksi Tukholma
-    var map = L.map('map').setView([59.3293, 18.0686], 6); 
-
-    // Lisää OpenStreetMap-karttalaatta
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap'
-    }).addTo(map);
-
-    // Lisää merkit sijainteihin
-    var locations = [
-      { coords: [59.3293, 18.0686], name: "Tukholma" },
-      { coords: [57.6375, 18.2953], name: "Visby" },
-      { coords: [56.9667, 16.6564], name: "Byxelkrok, Öölanti" }
-    ];
-
-    locations.forEach(function(location) {
-      L.marker(location.coords).addTo(map)
-        .bindPopup(location.name);
-    });
   </script>
 </body>
 </html>
