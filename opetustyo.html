@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Matkamme</title>
 
-  <!-- Leaflet.js-kirjaston tyylit karttaa varten -->
+  <!-- Leaflet.js-karttakirjasto -->
   <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
   
   <style>
@@ -23,6 +23,49 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
+    }
+
+    /* Navigointipalkki */
+    nav {
+      width: 100%;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background-color: rgba(169, 169, 169, 0.9);
+      padding: 10px 0;
+      text-align: center;
+      z-index: 1000;
+    }
+
+    nav a {
+      color: white;
+      margin: 0 15px;
+      text-decoration: none;
+      font-size: 1rem;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    /* Sivun sisältö */
+    .content {
+      text-align: center;
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      border-radius: 10px;
+      margin: 80px auto;
+      width: 50%;
+      max-width: 600px;
+    }
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      font-size: 1rem;
+      line-height: 1.6;
     }
 
     /* Kuvagalleria */
@@ -77,26 +120,43 @@
 
     /* Responsiivisuus */
     @media (max-width: 768px) {
+      .content { width: 90%; padding: 15px; }
       .prev { left: -30px; }
       .next { right: -30px; }
     }
   </style>
-
 </head>
 <body>
 
-  <!-- Kuvagalleria -->
-  <div class="gallery-container" id="gallery">
-    <button class="prev" onclick="changeImage(-1)">&#10094;</button>
-    <img id="gallery-image" src="kuvalahto.jpg" alt="Lähtö Laurinlahdesta">
-    <button class="next" onclick="changeImage(1)">&#10095;</button>
-    <p id="caption" class="caption">Lähtö Laurinlahdesta</p>
+  <!-- Navigointipalkki -->
+  <nav>
+    <a href="index.html">Etusivu</a>
+    <a href="ansioluettelo.html">S/Y Delfoi</a>
+    <a href="opetustyo.html">Matkamme</a>
+  </nav>
+
+  <!-- Sivun sisältö -->
+  <div class="content">
+    <h1>Tulevat reittisuunnitelmat</h1>
+    <p>Tulevana kesänä Delfoi suuntaa kohti Göteborgia sekä Ruotsin länsirannikkoa.</p>
+    
+    <h1>Matkakertomukset</h1>
+    <p>Kesällä 2024 purjehdimme kotisatamastamme Ruotsiin ja Gotlantiin. Matkamme kaukaisin käännöspaikka oli Öölannin pohjoiskärjessä sijaitseva Byxelkrokin satama.</p>
+
+    <!-- Kuvagalleria -->
+    <div class="gallery-container" id="gallery">
+      <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+      <img id="gallery-image" src="kuvalahto.jpg" alt="Lähtö Laurinlahdesta">
+      <button class="next" onclick="changeImage(1)">&#10095;</button>
+      <p id="caption" class="caption">Lähtö Laurinlahdesta</p>
+    </div>
+
+    <!-- Kartta -->
+    <h2>Reittikartta</h2>
+    <div id="map"></div>
   </div>
 
-  <!-- Kartta -->
-  <div id="map"></div>
-
-  <!-- Leaflet.js-kirjaston skripti -->
+  <!-- Leaflet.js-karttascripti -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
 
   <script>
@@ -118,7 +178,7 @@
       document.getElementById("caption").textContent = images[currentIndex].caption;
     }
 
-    // Pyyhkäisyeleiden käsittely mobiililaitteille
+    // Pyyhkäisytuki mobiilille
     document.getElementById("gallery").addEventListener("touchstart", function(event) {
       startX = event.touches[0].clientX;
     });
@@ -128,20 +188,20 @@
       let difference = startX - endX;
 
       if (difference > 50) {
-        changeImage(1); // Pyyhkäisy vasemmalle -> seuraava kuva
+        changeImage(1);
       } else if (difference < -50) {
-        changeImage(-1); // Pyyhkäisy oikealle -> edellinen kuva
+        changeImage(-1);
       }
     });
 
     // Leaflet.js-kartan luonti
-    var map = L.map('map').setView([59.3293, 18.0686], 5); // Koordinaatit: Tukholma, zoom-taso 5
+    var map = L.map('map').setView([59.3293, 18.0686], 5);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
 
-    // Merkitään muutama matkakohde kartalle
+    // Merkitään matkakohteet kartalle
     var locations = [
       { coords: [60.1658, 24.9525], text: "Lähtö: Helsinki" },
       { coords: [57.6348, 18.2990], text: "Visby, Gotlanti" },
@@ -156,6 +216,7 @@
 
 </body>
 </html>
+
 
 
 
