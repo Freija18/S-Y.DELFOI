@@ -80,11 +80,14 @@
       user-select: none;
     }
 
-    .caption {
-      text-align: center;
-      font-size: 1.2rem;
-      margin-top: 10px;
-    }
+.caption {
+  position: relative;
+  display: inline-block;
+  background-color: rgba(169, 169, 169, 0.7); /* Harmaa läpinäkyvä tausta */
+  color: white; /* Tekstin väri */
+  padding: 10px; /* Sisätilaa tekstille */
+  border-radius: 5px; /* Pehmeät reunat */
+}
 
     .prev, .next {
       position: absolute;
@@ -149,7 +152,6 @@
     <h1>Miehistö</h1>
     <p>S/Y Delfoin vakiomiehistöön kuuluvat Henrik ja Meri sekä Freija-koira.</p>
   </div>
-    
     <!-- Kuvagalleria -->
     <div class="gallery-container" id="gallery">
       <button class="prev" onclick="changeImage(-1)">&#10094;</button>
