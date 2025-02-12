@@ -11,20 +11,20 @@
       padding: 0;
       font-family: 'Lucida Console', monospace;
       color: black;
-      min-height: 100vh; /* Varmistaa, että sisältö täyttää koko näytön korkeuden */
+      min-height: 100vh;
       display: flex;
       flex-direction: column;
-      justify-content: space-between; /* Jakaa sisällön tasaisesti */
-      background-image: url(SYDelfoi.jpg); /* Vaihda tähän oikea kuvan nimi */
+      justify-content: space-between;
+      background-image: url(SYDelfoi.jpg);
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
     }
 
-    /* Nostetaan taustakuvaa VAIN työpöydällä */
+    /* Nostetaan taustakuvaa työpöydällä */
     @media (min-width: 769px) {  
       body {
-        background-position: center -600px; /* Siirtää taustakuvaa ylöspäin */
+        background-position: center -600px;
       }
     }
 
@@ -57,9 +57,9 @@
       background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       border-radius: 10px;
-      margin: 80px auto; /* Joustava marginaali navigaatiosta */
+      margin: 80px auto;
       width: 50%;
-      max-width: 600px; /* Maksimileveys isoilla näytöillä */
+      max-width: 600px;
     }
 
     h1 {
@@ -71,45 +71,66 @@
       line-height: 1.6;
     }
 
-    /* Responsiivisuus mobiililaitteilla */
-    @media (max-width: 768px) {
-      nav a {
-        font-size: 1rem;
-        margin: 0 10px;
-      }
-
-      .content {
-        width: 90%; /* Tee sisällöstä leveämpi pienillä näytöillä */
-        padding: 15px; /* Pienennä sisäistä täytettä */
-      }
-
-      h1 {
-        font-size: 1.5rem; /* Pienennä otsikoiden kokoa mobiilissa */
-      }
-
-      p {
-        font-size: 0.9rem;
-      }
+    /* Kuvagalleria */
+    .gallery-container {
+      position: relative;
+      max-width: 400px;
+      margin: 20px auto;
+      touch-action: pan-y;
     }
 
-    /* Parannuksia erittäin pienille näytöille */
-    @media (max-width: 480px) {
-      nav a {
-        font-size: 0.9rem;
-        margin: 0 5px;
-      }
+    .gallery-container img {
+      width: 100%;
+      border-radius: 10px;
+      user-select: none;
+    }
 
+    .caption {
+      text-align: center;
+      font-size: 1.2rem;
+      margin-top: 10px;
+    }
+
+    .prev, .next {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      background-color: rgba(255, 255, 255, 0.7);
+      color: black;
+      border: none;
+      padding: 10px;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 20px;
+      z-index: 10;
+      transition: 0.3s;
+    }
+
+    .prev:hover, .next:hover {
+      background-color: white;
+    }
+
+    .prev { left: -40px; }
+    .next { right: -40px; }
+
+    /* Responsiivisuus mobiililaitteilla */
+    @media (max-width: 768px) {
       .content {
-        padding: 10px;
+        width: 90%;
+        padding: 15px;
       }
+      h1 { font-size: 1.5rem; }
+      p { font-size: 0.9rem; }
+      .prev { left: -30px; }
+      .next { right: -30px; }
+    }
 
-      h1 {
-        font-size: 1.3rem;
-      }
-
-      p {
-        font-size: 0.8rem;
-      }
+    /* Pienille näytöille */
+    @media (max-width: 480px) {
+      nav a { font-size: 0.9rem; margin: 0 5px; }
+      .content { padding: 10px; }
+      h1 { font-size: 1.3rem; }
+      p { font-size: 0.8rem; }
     }
   </style>
 </head>
@@ -128,13 +149,59 @@
     <p>S/Y Delfoi on malliltaan Delphia 29. Se on noin 9 metriä pitkä ja 3 metriä leveä. Syväys on 1,6m.
     Vene on ollut meillä vuodesta 2022 ja olemme varsin tyytyväisiä siihen. Vene tarjoaa riittävästi tilaa ja on 
     vakaa, jota erityisesti koiramme arvostaa. Veneessä on seisomakorkeus ja matkapurjehdusta parantavia varusteita, 
-      kuten lämmin painevesi ja iso suojaisa avotila.</p>
+    kuten lämmin painevesi ja iso suojaisa avotila.</p>
+
+    <!-- Kuvagalleria -->
+    <div class="gallery-container" id="gallery">
+      <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+      <img id="gallery-image" src="kuva1.jpg" alt="S/Y Delfoi satamassa">
+      <button class="next" onclick="changeImage(1)">&#10095;</button>
+      <p id="caption" class="caption">S/Y Delfoi satamassa</p>
+    </div>
+
     <h1>Miehistö</h1>
     <p>S/Y Delfoin vakiomiehistöön kuuluvat Henrik ja Meri sekä Freija-koira.</p>
   </div>
 
+  <!-- JavaScript kuvagalleriaa varten -->
+  <script>
+    const images = [
+      { src: "SYDelfoi.jpg", caption: "S/Y Delfoi satamassa" },
+      { src: "kuva2.jpg", caption: "Delfoi merellä" },
+      { src: "kuva3.jpg", caption: "Henrik ruorissa" },
+      { src: "kuva4.jpg", caption: "Meri navigoimassa" },
+      { src: "kuva5.jpg", caption: "Freija tähystämässä" }
+    ];
+
+    let currentIndex = 0;
+    let startX = 0;
+
+    function changeImage(direction) {
+      currentIndex = (currentIndex + direction + images.length) % images.length;
+      document.getElementById("gallery-image").src = images[currentIndex].src;
+      document.getElementById("caption").textContent = images[currentIndex].caption;
+    }
+
+    // Pyyhkäisytuki mobiilille
+    document.getElementById("gallery").addEventListener("touchstart", function(event) {
+      startX = event.touches[0].clientX;
+    });
+
+    document.getElementById("gallery").addEventListener("touchend", function(event) {
+      let endX = event.changedTouches[0].clientX;
+      let difference = startX - endX;
+
+      if (difference > 50) {
+        changeImage(1);
+      } else if (difference < -50) {
+        changeImage(-1);
+      }
+    });
+  </script>
+
 </body>
 </html>
+
 
 
 
