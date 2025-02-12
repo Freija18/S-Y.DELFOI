@@ -154,9 +154,9 @@
   <!-- Kuvagalleria -->
   <div class="gallery-container" id="gallery">
     <button class="prev" onclick="changeImage(-1)">&#10094;</button>
-    <img id="gallery-image" src="" alt="Kuva">
+    <img id="gallery-image" src="kuva1.jpg" alt="S/Y Delfoi satamassa">
     <button class="next" onclick="changeImage(1)">&#10095;</button>
-    <p id="caption" class="caption"></p>
+    <p id="caption" class="caption">S/Y Delfoi satamassa</p>
   </div>
 
   <!-- JavaScript kuvagalleriaa varten -->
@@ -170,16 +170,16 @@
     let startX = 0;
 
     function changeImage(direction) {
-      if (direction !== 0) {
-        currentIndex = (currentIndex + direction + images.length) % images.length;
-      }
+      currentIndex = (currentIndex + direction + images.length) % images.length;
       document.getElementById("gallery-image").src = images[currentIndex].src;
       document.getElementById("caption").textContent = images[currentIndex].caption;
     }
 
     // Asetetaan ensimmäinen kuva heti sivun latautuessa
     document.addEventListener("DOMContentLoaded", () => {
-      changeImage(0);
+      document.getElementById("gallery-image").src = images[0].src;
+      document.getElementById("caption").textContent = images[0].caption;
+      currentIndex = 0;
     });
 
     // Pyyhkäisytuki mobiilille
