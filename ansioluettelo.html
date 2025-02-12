@@ -19,8 +19,6 @@
       background-size: cover;
       background-position: center;
       background-repeat: no-repeat;
-  
-
     }
 
     /* Navigointipalkki */
@@ -80,14 +78,14 @@
       user-select: none;
     }
 
-.caption {
-  position: relative;
-  display: inline-block;
-  background-color: rgba(169, 169, 169, 0.7); /* Harmaa läpinäkyvä tausta */
-  color: white; /* Tekstin väri */
-  padding: 10px; /* Sisätilaa tekstille */
-  border-radius: 5px; /* Pehmeät reunat */
-}
+    .caption {
+      position: relative;
+      display: inline-block;
+      background-color: rgba(169, 169, 169, 0.7);
+      color: white;
+      padding: 10px;
+      border-radius: 5px;
+    }
 
     .prev, .next {
       position: absolute;
@@ -152,18 +150,19 @@
     <h1>Miehistö</h1>
     <p>S/Y Delfoin vakiomiehistöön kuuluvat Henrik ja Meri sekä Freija-koira.</p>
   </div>
-    <!-- Kuvagalleria -->
-    <div class="gallery-container" id="gallery">
-      <button class="prev" onclick="changeImage(-1)">&#10094;</button>
-      <img id="gallery-image" src="kuva1.jpg" alt="S/Y Delfoi satamassa">
-      <button class="next" onclick="changeImage(1)">&#10095;</button>
-      <p id="caption" class="caption">S/Y Delfoi satamassa</p>
-    </div>
+
+  <!-- Kuvagalleria -->
+  <div class="gallery-container" id="gallery">
+    <button class="prev" onclick="changeImage(-1)">&#10094;</button>
+    <img id="gallery-image" src="" alt="Kuva">
+    <button class="next" onclick="changeImage(1)">&#10095;</button>
+    <p id="caption" class="caption"></p>
+  </div>
 
   <!-- JavaScript kuvagalleriaa varten -->
   <script>
     const images = [
-      { src: "SYDelfoi.jpg", caption: "S/Y Delfoi satamassa" },
+      { src: "kuva1.jpg", caption: "S/Y Delfoi satamassa" },
       { src: "Delphiapohja.jpeg", caption: "Delfoin pohjapiirros" },
     ];
 
@@ -171,10 +170,17 @@
     let startX = 0;
 
     function changeImage(direction) {
-      currentIndex = (currentIndex + direction + images.length) % images.length;
+      if (direction !== 0) {
+        currentIndex = (currentIndex + direction + images.length) % images.length;
+      }
       document.getElementById("gallery-image").src = images[currentIndex].src;
       document.getElementById("caption").textContent = images[currentIndex].caption;
     }
+
+    // Asetetaan ensimmäinen kuva heti sivun latautuessa
+    document.addEventListener("DOMContentLoaded", () => {
+      changeImage(0);
+    });
 
     // Pyyhkäisytuki mobiilille
     document.getElementById("gallery").addEventListener("touchstart", function(event) {
@@ -195,6 +201,7 @@
 
 </body>
 </html>
+
 
 
 
