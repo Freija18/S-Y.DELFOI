@@ -154,6 +154,12 @@
     <!-- Kartta -->
     <h2>Delfoin satamat 2024</h2>
     <div id="map"></div>
+
+    <div id="weather-info">
+      <h3>Tuuliennuste:</h3>
+      <p id="wind-speed">Tuulen nopeus: N/A</p>
+      <p id="wind-direction">Tuulen suunta: N/A</p>
+    </div>
   </div>
 
   <!-- Leaflet.js-karttascripti -->
@@ -234,7 +240,7 @@
       { coords: [60.109931, 20.681061], text: "Sottunga" },
       { coords: [59.811197, 22.336600], text: "Örö" },
       { coords: [59.819874, 22.965494], text: "Hanko, Itäsatama" },
-      { coords: [59.991858, 24.574373], text: "Bylandet, Stora Mickelskär" }  
+      { coords: [59.991858, 24.574373], text: "Bylandet, Stora Mickelskär" }
     ];
 
     locations.forEach(loc => {
@@ -250,7 +256,8 @@
         });
 
         windyAPI.getWind(lat, lon, function(wind) {
-          e.popup.setContent('Tuuli: ' + wind.speed + ' m/s, suunta: ' + wind.direction + '°');
+          document.getElementById('wind-speed').textContent = 'Tuulen nopeus: ' + wind.speed + ' m/s';
+          document.getElementById('wind-direction').textContent = 'Tuulen suunta: ' + wind.direction + '°';
         });
       });
     });
@@ -258,5 +265,6 @@
 
 </body>
 </html>
+
 
 
