@@ -124,6 +124,17 @@
       .prev { left: -30px; }
       .next { right: -30px; }
     }
+
+    /* Tuuliennusteen tyyli */
+    #weather-info {
+      margin-top: 20px;
+      font-size: 1.1rem;
+    }
+
+    #weather-info h3 {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -248,7 +259,7 @@
         var lat = e.latlng.lat;
         var lon = e.latlng.lng;
 
-        // Tuulidata Windy-kartalta
+        // Windy API tuuliennusteen hakeminen
         windyAPI.setParams({
           lat: lat,
           lon: lon,
@@ -265,6 +276,7 @@
 
 </body>
 </html>
+
 
 
 
