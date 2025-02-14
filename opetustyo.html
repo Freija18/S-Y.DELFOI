@@ -240,6 +240,58 @@
       L.marker(loc.coords).addTo(map).bindPopup(loc.text);
     });
 
+// Windy API:n avain
+    const WINDY_API_KEY = C0izt5UoWuzFSCQrsrM3jL8x2KiCZf4G;  // Aseta oma API-avain
+
+    // Tuuliennusteen hakeminen Windy API:sta
+    async function fetchWindData(lat, lon) {
+      const url = `https://api.windy.com/api/point-forecast/v2?lat=${lat}&lon=${lon}&model=gfs&parameters=windSpeed,windGust,windDir&key=${WINDY_API_KEY}`;
+
+      try {
+        const response = await fetch(url);
+        const data = await response.json();
+
+        const windSpeed = data.windSpeed[0];
+        const windGust = data.windGust[0];
+        const windDir = data.windDir[0];
+
+        const windDirection = getWindDirection(windDir);
+
+        return {
+          speed: windSpeed,
+          gust: windGust,
+          direction: windDirection
+        };
+      } catch (error) {
+        console.error("Tuuliennusteen haku epäonnistui:", error);
+        return null;
+      }
+    }
+
+    function getWindDirection(degrees) {
+      const directions = ["Pohjoinen", "Koillinen", "Itä", "Kaakko", "Etelä", "Lounas", "Länsi", "Luode"];
+      return directions[Math.round(degrees / 45) % 8];
+    }
+
+    // Kartan klikkaus ja tuuliennusteen näyttäminen
+    map.on('click', async function(e) {
+      const { lat, lng } = e.latlng;
+      const windData = await fetchWindData(lat, lng);
+
+      if (windData) {
+        L.popup()
+          .setLatLng([lat, lng])
+          .setContent(`
+            <b>Tuuliennuste</b><br>
+            🌬️ Tuulen nopeus: ${windData.speed} m/s<br>
+            💨 Puuskat: ${windData.gust} m/s<br>
+            🧭 Suunta: ${windData.direction}
+          `)
+          .openOn(map);
+      } else {
+        alert("Tuulidataa ei voitu hakea.");
+      }
+    });
   </script>
 
 </body>
