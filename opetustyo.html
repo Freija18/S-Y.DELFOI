@@ -158,6 +158,7 @@
 
   <!-- Leaflet.js-karttascripti -->
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/windy-api@2.0.0/dist/windy.min.js"></script>
 
   <script>
     // Kuvadata
@@ -229,17 +230,33 @@
       { coords: [59.595945, 19.165115], text: "Rödlöga" },
       { coords: [59.843749, 19.122729], text: "Arholma" },
       { coords: [60.097785, 19.948819], text: "Maarianhamina, Itäsatama" },
-      { coords: [60.128274, 19.937430], text: "Maarianhamina, Lilla Varholmen" }
+      { coords: [60.230287, 20.078648], text: "Kastelholma" },
+      { coords: [60.109931, 20.681061], text: "Sottunga" },
+      { coords: [59.811197, 22.336600], text: "Örö" },
+      { coords: [59.819874, 22.965494], text: "Hanko, Itäsatama" },
+      { coords: [59.991858, 24.574373], text: "Bylandet, Stora Mickelskär" }  
     ];
 
-    // Lisää merkit matkakohteisiin
-    locations.forEach(function(location) {
-      L.marker(location.coords)
-        .addTo(map)
-        .bindPopup(location.text);
+    locations.forEach(loc => {
+      L.marker(loc.coords).addTo(map).bindPopup(loc.text).on('click', function(e) {
+        var lat = e.latlng.lat;
+        var lon = e.latlng.lng;
+
+        // Tuulidata Windy-kartalta
+        windyAPI.setParams({
+          lat: lat,
+          lon: lon,
+          zoom: 6
+        });
+
+        windyAPI.getWind(lat, lon, function(wind) {
+          e.popup.setContent('Tuuli: ' + wind.speed + ' m/s, suunta: ' + wind.direction + '°');
+        });
+      });
     });
   </script>
 
 </body>
 </html>
+
 
