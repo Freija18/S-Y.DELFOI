@@ -16,23 +16,29 @@ document.addEventListener("DOMContentLoaded", function () {
     "Missä vene sijaitsee?": "Veneemme kotisatama sijaitsee Laurinlahdessa Espoossa."
   };
 
-  function addMessage(sender, text) {
+  function addMessage(sender, text, question = '') {
     const message = document.createElement("div");
     message.style.padding = "5px";
     message.style.margin = "5px";
     message.style.borderRadius = "5px";
     message.style.backgroundColor = sender === "Bot" ? "#eee" : "#cce5ff";
     message.innerHTML = `<strong>${sender}:</strong> ${text}`;
+
+    // Lisää 'data-question' attribuutti, joka mahdollistaa chatin sulkemisen samalle kysymykselle
+    if (question) {
+      message.setAttribute('data-question', question);
+    }
+    
     chatMessages.appendChild(message);
     chatMessages.scrollTop = chatMessages.scrollHeight;
   }
 
   function sendMessage(question) {
     addMessage("Sinä", question);
-    
+
     setTimeout(() => {
       const botReply = responses[question] || "Pahoittelut, en ymmärtänyt kysymystäsi.";
-      addMessage("Bot", botReply);
+      addMessage("Bot", botReply, question);
     }, 500);
   }
 
@@ -50,16 +56,18 @@ document.addEventListener("DOMContentLoaded", function () {
     button.style.borderRadius = "5px";
 
     button.onclick = function () {
-      // Jos kysymyksellä on jo vastaus näkyvissä, sulje chat
+      // Tarkistetaan, onko sama kysymys jo käsitelty
       const existingResponse = document.querySelector(`#chat-messages div[data-question="${question}"]`);
+
       if (existingResponse) {
-        const chatContainer = document.getElementById("chat-container");
-        chatContainer.style.display = "none";  // Suljetaan chat-ikkuna
-        return; // Ei tehdä mitään muuta
+        // Jos vastaus on jo näkyvissä, poistetaan se
+        existingResponse.remove();
+      } else {
+        // Lähetetään viesti normaalisti, jos kysymys ei ole vielä käsitelty
+        sendMessage(question);
       }
-      
-      sendMessage(question);
     };
+
     questionContainer.appendChild(button);
   });
 
@@ -70,4 +78,5 @@ document.addEventListener("DOMContentLoaded", function () {
     chatContainer.style.display = (chatContainer.style.display === "none" || chatContainer.style.display === "") ? "block" : "none";
   };
 });
+
 
