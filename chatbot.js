@@ -52,6 +52,12 @@ document.addEventListener("DOMContentLoaded", function () {
       sendMessage(question);
     };
     questionContainer.appendChild(button);
+
+    window.toggleChat = function () {
+  const chatContainer = document.getElementById("chat-container");
+  chatContainer.style.display = (chatContainer.style.display === "none" || chatContainer.style.display === "") ? "block" : "none";
+};
+
   });
 });
 
