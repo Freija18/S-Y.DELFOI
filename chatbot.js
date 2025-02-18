@@ -10,10 +10,10 @@ document.addEventListener("DOMContentLoaded", function () {
   ];
 
   const responses = {
-    "Mikä on tämä sivu?": "Tämä on S/Y Delfoin kotisivu, jossa kerromme purjehdusmatkoistamme.",
-    "Kerro matkoista": "Täältä löydät matkakertomuksia ja reittisuunnitelmia!",
-    "Kuka olet?": "Olen chatbot, joka auttaa sinua navigoimaan tällä sivulla.",
-    "Hei!": "Hei! Miten voin auttaa?"
+    "Mikä tämä sivu on?": "Tämä on purjeveneemme S/Y Delfoin kotisivu, jossa kerromme purjehdusmatkoistamme.",
+    "Kerro matkoista": " "Matkamme" osiosta löydät matkakertomuksia ja reittisuunnitelmiamme!",
+    "Mikä on S/Y Delfoi?": "S/Y Delfoi on Delphia 29 purjevene, jolla olemme viettäneet kesämme vuodesta 2022 alkaen.",
+    "Missä vene sijaitsee?": "Veneemme kotisatama sijaitsee Laurinlahdessa Espoossa."
   };
 
   function addMessage(sender, text) {
