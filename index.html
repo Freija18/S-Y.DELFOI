@@ -59,7 +59,6 @@
       width: 78%;
     }
 
-    /* Harmaa taustakuva tekstille */
     .content::before {
       content: '';
       position: absolute;
@@ -87,7 +86,6 @@
       line-height: 1.5;
     }
 
-    /* Kirjekuori-ikoni */
     .chat-icon {
       position: fixed;
       bottom: 20px;
@@ -98,7 +96,6 @@
       z-index: 1000;
     }
 
-    /* Chat-ikkuna */
     #chat-container {
       position: fixed;
       bottom: 80px;
@@ -120,6 +117,7 @@
       text-align: center;
       padding: 10px;
       font-size: 1rem;
+      cursor: pointer; /* Muutetaan kursoria klikkaukselle */
     }
 
     #chat-messages {
@@ -147,28 +145,26 @@
       border: none;
       padding: 5px 10px;
       cursor: pointer;
-      
-#chat-toggle {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 50px;
-  height: 50px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 24px;
-  cursor: pointer;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-}
+    }
 
-#chat-toggle:hover {
-  background: #f0f0f0;
-}
+    #chat-toggle {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+    }
 
-    
+    #chat-toggle:hover {
+      background: #f0f0f0;
     }
 
     #chat-input button:hover {
@@ -194,20 +190,19 @@
     Keräämme tänne matkakertomuksemme sekä tulevat reittisuunnitelmamme.</p>
   </div>
 
-  <!-- Kirjekuori-ikoni -->
-<div class="chat-icon" onclick="toggleChat()">📩</div>
+  <div class="chat-icon" onclick="toggleChat()">📩</div>
 
-<!-- Chatbot-kontti -->
-<div id="chat-container" style="display: none;">
-  <div id="chat-header">Chatbotti</div>
-  <div id="chat-messages"></div>
-  <div id="chat-questions"></div> <!-- Tänne lisätään valmiit kysymykset -->
-</div>
-
+  <!-- Chatbot-kontti -->
+  <div id="chat-container">
+    <div id="chat-header" onclick="toggleChat()">Chatbotti</div>
+    <div id="chat-messages"></div>
+    <div id="chat-questions"></div>
+  </div>
 
   <script src="chatbot.js"></script>
 </body>
 </html>
+
 
 
 
