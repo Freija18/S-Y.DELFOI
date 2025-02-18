@@ -59,6 +59,23 @@
       width: 78%;
     }
 
+    /* Harmaa taustakuva tekstille */
+    .content::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 55%;
+      transform: translate(-50%, -50%);
+      width: 580%;
+      height: 580%;
+      background-image: url('harmaaoikea3.png');
+      background-size: contain;
+      background-repeat: no-repeat;
+      background-position: center;
+      z-index: -1;
+      opacity: 0.9;
+    }
+
     h1 {
       font-size: 2rem;
       color: black;
@@ -70,24 +87,18 @@
       line-height: 1.5;
     }
 
-    /* Chatbotin kuvake */
-    #chat-toggle {
+    /* Kirjekuori-ikoni */
+    .chat-icon {
       position: fixed;
       bottom: 20px;
       right: 20px;
       width: 50px;
       height: 50px;
-      background: white;
-      border-radius: 50%;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 24px;
       cursor: pointer;
+      z-index: 1000;
     }
 
-    /* Chatbotin laatikko (oletuksena piilossa) */
+    /* Chat-ikkuna */
     #chat-container {
       position: fixed;
       bottom: 80px;
@@ -100,6 +111,7 @@
       display: none;
       flex-direction: column;
       overflow: hidden;
+      z-index: 1000;
     }
 
     #chat-header {
@@ -108,17 +120,6 @@
       text-align: center;
       padding: 10px;
       font-size: 1rem;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-
-    #chat-header button {
-      background: none;
-      border: none;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
     }
 
     #chat-messages {
@@ -171,17 +172,12 @@
     Keräämme tänne matkakertomuksemme sekä tulevat reittisuunnitelmamme.</p>
   </div>
 
-  <!-- Chatbot-kuvake -->
-  <div id="chat-toggle" onclick="toggleChat()">
-    💌
-  </div>
+  <!-- Kirjekuori-ikoni -->
+  <img src="kirjekuori.png" alt="Chat" class="chat-icon" onclick="toggleChat()">
 
-  <!-- Chatbot-kontti -->
+  <!-- Chatbot -->
   <div id="chat-container">
-    <div id="chat-header">
-      Chatbotti
-      <button onclick="toggleChat()">✖</button>
-    </div>
+    <div id="chat-header">Chatbotti</div>
     <div id="chat-messages"></div>
     <div id="chat-input">
       <input type="text" id="chat-text" placeholder="Kysy jotain..." />
@@ -192,5 +188,6 @@
   <script src="chatbot.js"></script>
 </body>
 </html>
+
 
 
