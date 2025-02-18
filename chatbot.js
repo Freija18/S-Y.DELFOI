@@ -1,6 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
+  const chatContainer = document.getElementById("chat-container");
   const chatMessages = document.getElementById("chat-messages");
   const chatInput = document.getElementById("chat-text");
+
+  function toggleChat() {
+    chatContainer.style.display = (chatContainer.style.display === "none" || chatContainer.style.display === "") ? "flex" : "none";
+  }
 
   function addMessage(sender, text) {
     const message = document.createElement("div");
@@ -36,4 +41,8 @@ document.addEventListener("DOMContentLoaded", function () {
       addMessage("Bot", botReply);
     }, 500);
   };
+
+  window.toggleChat = toggleChat;
+});
+
 });
