@@ -175,15 +175,13 @@
   <!-- Kirjekuori-ikoni -->
 <div class="chat-icon" onclick="toggleChat()">📩</div>
 
-  <!-- Chatbot -->
-  <div id="chat-container">
-    <div id="chat-header">Chatbotti</div>
-    <div id="chat-messages"></div>
-    <div id="chat-input">
-      <input type="text" id="chat-text" placeholder="Kysy jotain..." />
-      <button onclick="sendMessage()">Lähetä</button>
-    </div>
-  </div>
+<!-- Chatbot-kontti -->
+<div id="chat-container" style="display: none;">
+  <div id="chat-header">Chatbotti</div>
+  <div id="chat-messages"></div>
+  <div id="chat-questions"></div> <!-- Tänne lisätään valmiit kysymykset -->
+</div>
+
 
   <script src="chatbot.js"></script>
 </body>
