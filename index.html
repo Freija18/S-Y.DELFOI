@@ -51,48 +51,12 @@
       text-decoration: underline;
     }
 
-    .social-icons {
-      position: fixed;
-      bottom: 10px;
-      display: flex;
-      justify-content: center;
-      gap: 15px;
-      width: 100%;
-      z-index: 1000;
-    }
-
-    .social-icons a img {
-      width: 40px;
-      height: 40px;
-      transition: transform 0.3s ease-in-out;
-    }
-
-    .social-icons a img:hover {
-      transform: scale(1.1);
-    }
-
     .content {
       position: relative;
       text-align: center;
       padding: 10px;
       max-width: 400px;
       width: 78%;
-    }
-
-    .content::before {
-      content: '';
-      position: absolute;
-      top: 50%;
-      left: 55%;
-      transform: translate(-50%, -50%);
-      width: 580%;
-      height: 580%;
-      background-image: url(harmaaoikea3.png);
-      background-size: contain;
-      background-repeat: no-repeat;
-      background-position: center;
-      z-index: -1;
-      opacity: 0.9;
     }
 
     h1 {
@@ -106,17 +70,34 @@
       line-height: 1.5;
     }
 
-    /* Chatbot-tyylit */
-    #chat-container {
+    /* Chatbotin kuvake */
+    #chat-toggle {
       position: fixed;
       bottom: 20px;
+      right: 20px;
+      width: 50px;
+      height: 50px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /* Chatbotin laatikko (oletuksena piilossa) */
+    #chat-container {
+      position: fixed;
+      bottom: 80px;
       right: 20px;
       width: 300px;
       height: 400px;
       background: white;
       border-radius: 10px;
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
-      display: flex;
+      display: none;
       flex-direction: column;
       overflow: hidden;
     }
@@ -127,6 +108,17 @@
       text-align: center;
       padding: 10px;
       font-size: 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    #chat-header button {
+      background: none;
+      border: none;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
     }
 
     #chat-messages {
@@ -173,17 +165,23 @@
     <a href="opetustyo.html">Matkamme</a>
   </nav>
 
-  <div class="social-icons"></div>
-
   <div class="content">
     <h1>S/Y Delfoi!</h1>
     <p>Nämä sivut toimivat purjeveneemme kotisivuna ja matkapurjehduksemme kotisatamana.
     Keräämme tänne matkakertomuksemme sekä tulevat reittisuunnitelmamme.</p>
   </div>
 
+  <!-- Chatbot-kuvake -->
+  <div id="chat-toggle" onclick="toggleChat()">
+    💌
+  </div>
+
   <!-- Chatbot-kontti -->
   <div id="chat-container">
-    <div id="chat-header">Chatbotti</div>
+    <div id="chat-header">
+      Chatbotti
+      <button onclick="toggleChat()">✖</button>
+    </div>
     <div id="chat-messages"></div>
     <div id="chat-input">
       <input type="text" id="chat-text" placeholder="Kysy jotain..." />
@@ -194,4 +192,5 @@
   <script src="chatbot.js"></script>
 </body>
 </html>
+
 
