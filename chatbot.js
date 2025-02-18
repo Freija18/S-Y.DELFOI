@@ -3,15 +3,15 @@ document.addEventListener("DOMContentLoaded", function () {
   const questionContainer = document.getElementById("chat-questions");
 
   const questions = [
-    "Mikä on tämä sivu?",
+    "Mikä tämä sivu on?",
     "Kerro matkoista",
-    "Kuka olet?",
-    "Hei!"
+    "Mikä on S/Y Delfoi?",
+    "Missä vene sijaitsee?"
   ];
 
   const responses = {
     "Mikä tämä sivu on?": "Tämä on purjeveneemme S/Y Delfoin kotisivu, jossa kerromme purjehdusmatkoistamme.",
-    "Kerro matkoista": "Matkamme osiosta löydät matkakertomuksia ja reittisuunnitelmiamme!",
+    "Kerro matkoista": "Matkamme osiosta löydät matkakertomuksia ja reittisuunnitelmiämme!",
     "Mikä on S/Y Delfoi?": "S/Y Delfoi on Delphia 29 purjevene, jolla olemme viettäneet kesämme vuodesta 2022 alkaen.",
     "Missä vene sijaitsee?": "Veneemme kotisatama sijaitsee Laurinlahdessa Espoossa."
   };
@@ -57,9 +57,11 @@ document.addEventListener("DOMContentLoaded", function () {
   // Chat-ikkunan näyttäminen ja piilottaminen
   window.toggleChat = function () {
     const chatContainer = document.getElementById("chat-container");
+    // Tarkistetaan, jos chat-ikkuna on piilotettu, niin näytetään se, muuten piilotetaan
     chatContainer.style.display = (chatContainer.style.display === "none" || chatContainer.style.display === "") ? "block" : "none";
   };
 });
+
 
 
 
